@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;800&display=swap');
+
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        
+        body, html{
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+         
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        body{
+            background-image: url('background.jfif');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .mainbox{
+            height: 700px;
+            max-width: 500px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .box{
+           
+            border-radius: 200px;
+            overflow: hidden;
+            margin: 20px;
+        
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: rotate(0deg);
+            width: 200px;
+            height: 200px;
+            /* display: none; */
+            /* border: 3px solid green; */
+            transition:transform 0.5s ease;
+        }
+        div img{
+            width: 200px;
+            height: 200px;
+        }
+        .image2{
+          
+            overflow: hidden;
+            width: 100%;
+            display: none;
+        }
+        .image2 img{
+            height: 100%;
+            /* border: 5px solid rgb(204, 204, 204); */
+            width: 100%;
+            border-radius: 7px;
+        }
+        .control{
+            width: 100%;
+            margin: 50px 0px 0px 0px ;
+            position: static;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #counter{
+            font-family: "Poppins", sans-serif;
+            font-weight: 800;
+            font-style: normal;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* margin-top: 20px; */
+            /* text-align: center; */
+            height: 100px;
+            color: rgb(75, 74, 74);
+            font-size: 80px;
+            background-color: rgb(227, 242, 15);
+            width: 100%;
+            /* border-radius: 0px 0px 100px 100px; */
+        }
+
+        button{
+            font-family: "Poppins", sans-serif;
+            font-weight: 800;
+            font-style: normal;
+            width: 100%;
+            font-size: 50px;
+            box-sizing: border-box;
+            color: white;
+            font-weight: bold;
+            border:none;
+            border: 2px solid rgb(63, 63, 63);
+            padding: 5px;
+            /* height: 30px; */
+            background-color: rgba(33, 33, 33, 0.882);
+            border-radius: 4px 4px 0px;
+            transition: 0.2s ease;
+            
+        }
+        .text{
+            width: 100%;
+            color: white;
+            background-color: rgb(42, 42, 42,0.8);
+            display: flex;
+            flex-direction: column;
+            justify-items: center;
+            align-items: center;
+            text-align: center;
+            font-size: 35px;
+            /* font-weight: bold; */
+        }
+             p {
+                width: 100vw;
+                text-align: center;
+                background-color: rgb(255, 255, 255);
+
+            font-size: 20px;
+            color: rgb(8, 8, 8);
+            font-family:poppins;   
+            font-weight: 300;
+        }
+        .text h2{
+            /* color: rgb(51, 51, 51); */
+            font-size: 40px;
+            font-family: "Poppins", sans-serif;
+            font-weight: 600;
+            font-style: normal;
+        }
+        button:hover{
+          
+            cursor: pointer;
+            background-color: rgb(255, 255, 255,0.5);
+            color: rgb(44, 44, 44);
+            border: 2px solid rgb(232, 24, 90);
+            
+        }
+        button:active{
+            color: white;
+            cursor: pointer;
+           
+            /* scale: 1.1; */
+            background-color: rgb(246, 45, 109);
+        }
+       
+
+
+    </style>
+</head>
+<body>
+    <div class="text">
+        <h2>tyre spinner.</h2>
+       
+        <br>
+    </div>
+    <p>Spin 10 times for new tire.</p>
+    <div class="mainbox">
+        <div class="box" id="box"">
+            <img src="tire.webp" alt="" width="100%">
+        </div>
+        <span class="image2"><img src="example.gif" alt=""></span>
+        
+
+        <div class="control">
+            <button onclick="func()">ROTATE</button>
+            <span id="counter">0</span>
+        </div>
+
+</div>
+   
+</body>
+<script>
+
+let rotation = 0;
+let counter = 0;
+const images = ["tire.webp","tire2.png","tire3.png","tire4.png","tire5.png","tire6.png","tire7.png","example.gif"]
+function func(){
+    let variable = document.querySelector(".box");
+    if (counter >= 69) {
+            variable.style.display="none"
+            document.querySelector("span").style.display="block";
+            document.querySelector("button").innerText="boht ho gya"
+                return;
+            }
+   
+    
+
+    rotation += 100;
+    variable.style.transform = `rotate(${rotation}deg)`;
+    counter++;
+    document.getElementById("counter").innerText = counter;
+
+    let img = document.querySelector(".box img");
+    if (counter % 10 === 0) {
+              
+                let index = (counter / 10) ;
+                if (index < images.length) {
+                    img.src = images[index];
+                }
+            }
+    if(counter>=70){
+        let box = document.getElementById("box").style.borderRadius="0px";
+        box.style.width="inherit";
+        rotation = 0;
+        box.style.height="inherit";
+    }
+
+}
+
+// count = counter;
+// setInterval(func,200);
+
+
+</script>
+</html>
